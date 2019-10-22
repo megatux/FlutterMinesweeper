@@ -125,16 +125,15 @@ class _GameActivityState extends State<GameActivity> {
                     });
                   }
 
-                  if(squaresLeft <= bombCount) {
+                  if (squaresLeft <= bombCount) {
                     _handleWin();
                   }
-
                 },
                 // Flags square
                 onLongPress: () {
                   if (openedSquares[position] == false) {
                     setState(() {
-                      flaggedSquares[position] = true;
+                      flaggedSquares[position] = !flaggedSquares[position];
                     });
                   }
                 },
@@ -245,7 +244,6 @@ class _GameActivityState extends State<GameActivity> {
   // This function opens other squares around the target square which don't have any bombs around them.
   // We use a recursive function which stops at squares which have a non zero number of bombs around them.
   void _handleTap(int i, int j) {
-
     int position = (i * columnCount) + j;
     openedSquares[position] = true;
     squaresLeft = squaresLeft - 1;
